@@ -3,29 +3,29 @@ FROM golang:latest
 RUN mkdir -p /var/www/go_bbs
 WORKDIR /var/www/go_bbs
 
+# golang-migrateをインストール
+# @see https://dev.classmethod.jp/articles/db-migrate-with-golang-migrate/
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y curl gnupg2 vim
+RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.11.0/migrate.linux-amd64.tar.gz | tar xvz
+RUN mv ./migrate.linux-amd64 /usr/bin/migrate
+
+
 ################################################## 
 # 以下はなぜか実行されないが、プロジェクト作成の流れを書いておく。
 # ちなみに、/go/配下にsrc,bin,pkgが作成され、GINなどのpackageがinstallされる
 ################################################## 
-
 # Module初期化
 RUN go mod init github.com/hideyoshidan/go_bbs
 
-# # GIN install
+# GIN install
 RUN go get github.com/gin-gonic/gin
-# # Goのmysql driver install
+# Goのmysql driver install
 RUN go get github.com/go-sql-driver/mysql
-# # Gorm install
+# Gorm install
 RUN go get github.com/jinzhu/gorm
 
-# golang-migrateをインストール
-# @see https://dev.classmethod.jp/articles/db-migrate-with-golang-migrate/
-RUN apt-get update && apt-get upgrade -y \
-apt-get install -y curl gnupg2 vim \
-curl -L https://github.com/golang-migrate/migrate/releases/download/v4.11.0/migrate.linux-amd64.tar.gz | tar xvz \
-mv ./migrate.linux-amd64 /usr/bin/migrate
-
-# # 使われていない依存モジュールを削除
+# 使われていない依存モジュールを削除
 # RUN go mod tidy
-# # RUNさせる
+# RUNさせる
 # CMD go run main.go

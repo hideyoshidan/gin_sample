@@ -1,5 +1,5 @@
 MIGRATIONDIR = 'database/migrations'
-MYSQL_URL = 'mysql://go_user:go@tcp(go_db:3306)/go_db?charset=utf8&parseTime=True&loc=Local'
+MYSQL_URL = 'mysql://go_user:go@tcp(go_db:3306)/go_sample  ?charset=utf8&parseTime=True&loc=Local'
 
 #===============================================
 #  build 関連

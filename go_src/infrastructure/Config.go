@@ -42,7 +42,7 @@ func NewConfig() *Config {
 				Host    : "go_db",
 				Username: "go_user",
 				Password: "go",
-				DBName  : "go_db",
+				DBName  : "go_sample",
 				DBPort: "3306",
 			},
 		},

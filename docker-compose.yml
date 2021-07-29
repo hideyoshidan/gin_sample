@@ -26,7 +26,7 @@ services:
       - 3306:3307
     environment: 
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: go_db
+      MYSQL_DATABASE: go_sample
       MYSQL_USER: go_user
       MYSQL_PASSWORD: go
       TZ: 'Asia/Tokyo'
