@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  # Go
+  go_app:
+    container_name: 'go_app'
+    build: 
+      context: .
+      dockerfile: go_app/dockerfile
+    tty: true
+    env_file:
+      - go_app/go_setting.env
+    volumes:
+      - ./go_src:/var/www/go_bbs
+    ports: 
+      - 8080:8080
+    links: 
+      - go_db
+  
+  go_db:
+    container_name: go_db
+    build: 
+      context: ./go_db
+      dockerfile: dockerfile
+    tty: true
+    ports: 
+      - 3306:3307
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: go_db
+      MYSQL_USER: go_user
+      MYSQL_PASSWORD: go
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./go_db/data:/var/lib/mysql
+      - ./go_db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./go_db/sql:/docker-entrypoint-initdb.d
