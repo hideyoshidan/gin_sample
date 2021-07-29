@@ -1,4 +1,6 @@
-# 参考サイト
+# 1. 構築手順
+
+# 2. 参考サイト
 ## Docker
     - 第一弾 : https://bit.ly/2UuBqNX	
     - 第二弾 : https://bit.ly/3kzsnpC
